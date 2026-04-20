@@ -5,10 +5,11 @@
       "Bash(npm install *)",
       "Bash(npx tsc *)",
       "Bash(npm run *)",
-      "Bash(python3 /Users/daileran/Desktop/fridgechef/skills/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/scripts/search.py \"minimal elegant food lifestyle\" --design-system -p \"FridgeChef\")",
-      "Bash(python3 /Users/daileran/Desktop/fridgechef/skills/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/scripts/search.py \"elegant minimal serif sans-serif editorial\" --domain typography -n 6)",
-      "Bash(python3 /Users/daileran/Desktop/fridgechef/skills/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/scripts/search.py \"lavender purple minimal lifestyle\" --domain color -n 4)",
-      "Bash(npm uninstall *)"
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git push *)"
     ]
   }
 }

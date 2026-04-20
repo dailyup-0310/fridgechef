@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { buildSystemPrompt, buildUserPrompt } from "@/lib/prompt";
 import { fetchRecipeImage } from "@/features/recipe/fetchImage";
+import { consumeOneUse } from "@/lib/invite";
 import type { GenerateRequest, AIResponsePayload, GenerateResponse } from "@/types/api";
 import type { Recipe } from "@/types/recipe";
 
@@ -43,6 +44,23 @@ function jsonResp(body: GenerateResponse, status = 200) {
 }
 
 export async function POST(request: Request) {
+  // Read invite code from cookie and consume one use
+  const cookieHeader = request.headers.get("cookie") ?? "";
+  const inviteCode = cookieHeader
+    .split(";")
+    .map((c) => c.trim())
+    .find((c) => c.startsWith("fridge_auth="))
+    ?.split("=")[1] ?? "";
+
+  if (!inviteCode) {
+    return jsonResp({ success: false, recipes: [], error: "未授权，请先输入邀请码" }, 401);
+  }
+
+  const usage = await consumeOneUse(inviteCode);
+  if (!usage.valid) {
+    return jsonResp({ success: false, recipes: [], error: usage.error ?? "邀请码已达使用上限" }, 403);
+  }
+
   let body: GenerateRequest;
   try {
     body = (await request.json()) as GenerateRequest;
