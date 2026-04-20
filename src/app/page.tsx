@@ -9,6 +9,7 @@ import { GenerateBar } from "@/components/generate-bar";
 import { RecipeCard } from "@/components/recipe-card";
 import { RecipeDetail } from "@/components/recipe-detail";
 import { CookingLoader } from "@/components/cooking-loader";
+import { InviteGate } from "@/components/invite-gate";
 import { Mode, DailyPreferences, DietPreferences } from "@/types/preference";
 import { IngredientItem } from "@/types/ingredient";
 import { Recipe } from "@/types/recipe";
@@ -131,6 +132,7 @@ export default function HomePage() {
   const [mode, setMode] = useState<Mode>("daily");
   const [ingredients, setIngredients] = useState<IngredientItem[]>(defaultIngredients);
   const [preferences, setPreferences] = useState<DailyPreferences | DietPreferences>({});
+  const [authed, setAuthed] = useState<boolean | null>(null); // null = checking
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [shownNames, setShownNames] = useState<string[]>([]);
@@ -139,6 +141,13 @@ export default function HomePage() {
   const [noMoreRecipes, setNoMoreRecipes] = useState(false);
   const [suggestedIngredients, setSuggestedIngredients] = useState<string[]>([]);
   const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Check auth cookie on mount
+  useEffect(() => {
+    const val = document.cookie.split(";").map(c => c.trim()).find(c => c.startsWith("fridge_auth="))?.split("=")[1];
+    const has = !!val && val !== "1";
+    setAuthed(has);
+  }, []);
 
   // Auto-dismiss error after 5s
   useEffect(() => {
@@ -212,6 +221,18 @@ export default function HomePage() {
 
   const hasIngredients = ingredients.some((i) => i.input.trim());
   const isDiet = mode === "diet";
+
+  // Still checking cookie
+  if (authed === null) return null;
+
+  // Not authenticated — show invite gate
+  if (!authed) {
+    return (
+      <main data-mode="daily">
+        <InviteGate onSuccess={() => setAuthed(true)} />
+      </main>
+    );
+  }
 
   return (
     <main data-mode={mode} className="min-h-screen bg-theme pb-28 transition-colors duration-500">
