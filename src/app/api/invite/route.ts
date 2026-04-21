@@ -1,6 +1,9 @@
 import { checkCodeValid } from "@/lib/invite";
 
 export async function POST(request: Request) {
+  // DEBUG: temporary hard reject to verify this code is running
+  return Response.json({ success: false, error: "DEBUG_BLOCK" }, { status: 403 });
+
   let code: string;
   try {
     const body = await request.json();
@@ -13,7 +16,7 @@ export async function POST(request: Request) {
     return Response.json({ success: false, error: "请输入邀请码" }, { status: 400 });
   }
 
-  const valid = checkCodeValid(code);
+  const valid = await checkCodeValid(code);
   if (!valid) {
     return Response.json({ success: false, error: "邀请码无效" }, { status: 403 });
   }
