@@ -26,11 +26,10 @@ export async function checkCodeValid(code: string): Promise<boolean> {
     const { data, error } = await supabase
       .from("invite_codes")
       .select("code")
-      .eq("code", upper)
-      .maybeSingle();
-    console.log("[invite] maybeSingle data:", JSON.stringify(data), "error:", JSON.stringify(error));
-    if (error) return false;
-    return data !== null && data !== undefined;
+      .eq("code", upper);
+    console.log("[invite] query data:", JSON.stringify(data), "error:", JSON.stringify(error));
+    if (error || !data) return false;
+    return Array.isArray(data) && data.some((r) => r.code === upper);
   }
 
   // Fallback: check env var
