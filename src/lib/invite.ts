@@ -27,9 +27,10 @@ export async function checkCodeValid(code: string): Promise<boolean> {
       .from("invite_codes")
       .select("code")
       .eq("code", upper)
-      .single();
-    console.log("[invite] query result data:", data, "error:", error);
-    return !!data;
+      .maybeSingle();
+    console.log("[invite] maybeSingle data:", JSON.stringify(data), "error:", JSON.stringify(error));
+    if (error) return false;
+    return data !== null && data !== undefined;
   }
 
   // Fallback: check env var
