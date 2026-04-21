@@ -1,9 +1,6 @@
 import { checkCodeValid } from "@/lib/invite";
 
 export async function POST(request: Request) {
-  // DEBUG: temporary hard reject to verify this code is running
-  return Response.json({ success: false, error: "DEBUG_BLOCK" }, { status: 403 });
-
   let code: string;
   try {
     const body = await request.json();
