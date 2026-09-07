@@ -30,10 +30,10 @@ export function InviteGate({ onSuccess }: Props) {
       if (data.success) {
         onSuccess();
       } else {
-        setError(data.error ?? "邀请码无效");
+        setError(data.error ?? "Invalid invite code");
       }
     } catch {
-      setError("网络错误，请重试");
+      setError("Network error, please try again");
     } finally {
       setLoading(false);
     }
@@ -62,7 +62,7 @@ export function InviteGate({ onSuccess }: Props) {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-theme">FridgeChef</h1>
-            <p className="text-sm text-theme-muted mt-1">请输入邀请码以继续使用</p>
+            <p className="text-sm text-theme-muted mt-1">Enter your invite code to continue</p>
           </div>
         </div>
 
@@ -72,7 +72,7 @@ export function InviteGate({ onSuccess }: Props) {
             type="text"
             value={code}
             onChange={(e) => { setCode(e.target.value.toUpperCase()); setError(null); }}
-            placeholder="输入邀请码"
+            placeholder="Enter invite code"
             autoCapitalize="characters"
             autoComplete="off"
             spellCheck={false}
@@ -104,7 +104,7 @@ export function InviteGate({ onSuccess }: Props) {
               <Loader2 size={18} className="animate-spin" />
             ) : (
               <>
-                <span>进入</span>
+                <span>Enter</span>
                 <ArrowRight size={16} />
               </>
             )}
@@ -112,7 +112,7 @@ export function InviteGate({ onSuccess }: Props) {
         </form>
 
         <p className="text-center text-xs text-theme-muted opacity-50">
-          没有邀请码？请联系管理员获取
+          No invite code? Contact the admin to get one
         </p>
       </motion.div>
     </motion.div>

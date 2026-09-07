@@ -7,7 +7,7 @@ import type { Recipe } from "@/types/recipe";
 
 function makeClient() {
   const apiKey = process.env.DEEPSEEK_API_KEY;
-  if (!apiKey) throw new Error("DEEPSEEK_API_KEY 未配置");
+  if (!apiKey) throw new Error("DEEPSEEK_API_KEY not configured");
   return new OpenAI({ apiKey, baseURL: "https://api.deepseek.com" });
 }
 
@@ -15,11 +15,11 @@ function parseAIResponse(raw: string): AIResponsePayload {
   const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/i, "").trim();
   const payload = JSON.parse(cleaned) as AIResponsePayload;
   if (!Array.isArray(payload.recipes)) {
-    throw new Error("AI 返回格式错误：recipes 不是数组");
+    throw new Error("AI response error: recipes is not an array");
   }
   // Allow 0 recipes for special cases (allShown / noRecipePossible)
   if (payload.recipes.length > 0 && payload.recipes.length !== 3) {
-    throw new Error(`期望3道菜谱，实际收到 ${payload.recipes.length} 道`);
+    throw new Error(`Expected 3 recipes, got ${payload.recipes.length}`);
   }
   return payload;
 }
@@ -53,27 +53,27 @@ export async function POST(request: Request) {
     ?.split("=")[1] ?? "";
 
   if (!inviteCode) {
-    return jsonResp({ success: false, recipes: [], error: "未授权，请先输入邀请码" }, 401);
+    return jsonResp({ success: false, recipes: [], error: "Unauthorized, please enter your invite code" }, 401);
   }
 
   const usage = await consumeOneUse(inviteCode);
   if (!usage.valid) {
-    return jsonResp({ success: false, recipes: [], error: usage.error ?? "邀请码已达使用上限" }, 403);
+    return jsonResp({ success: false, recipes: [], error: usage.error ?? "Invite code usage limit reached" }, 403);
   }
 
   let body: GenerateRequest;
   try {
     body = (await request.json()) as GenerateRequest;
   } catch {
-    return jsonResp({ success: false, recipes: [], error: "请求格式错误" }, 400);
+    return jsonResp({ success: false, recipes: [], error: "Invalid request format" }, 400);
   }
 
   const { mode, ingredients } = body;
   if (mode !== "daily" && mode !== "diet") {
-    return jsonResp({ success: false, recipes: [], error: "无效的 mode 参数" }, 400);
+    return jsonResp({ success: false, recipes: [], error: "Invalid mode parameter" }, 400);
   }
   if (!Array.isArray(ingredients)) {
-    return jsonResp({ success: false, recipes: [], error: "ingredients 格式错误" }, 400);
+    return jsonResp({ success: false, recipes: [], error: "Invalid ingredients format" }, 400);
   }
 
   try {
@@ -90,7 +90,7 @@ export async function POST(request: Request) {
     });
 
     const text = completion.choices[0]?.message?.content ?? "";
-    if (!text) throw new Error("DeepSeek 未返回内容");
+    if (!text) throw new Error("DeepSeek returned no content");
 
     const payload = parseAIResponse(text);
 
@@ -120,12 +120,12 @@ export async function POST(request: Request) {
     console.error("[/api/generate]", err);
     const raw = err instanceof Error ? err.message : String(err);
     const msg = raw.includes("Insufficient Balance") || raw.includes("credit")
-      ? "API 余额不足，请前往 platform.deepseek.com 充值后重试"
-      : raw.includes("DEEPSEEK_API_KEY 未配置")
-      ? "请先在 .env.local 中配置 DEEPSEEK_API_KEY"
+      ? "Insufficient API credits. Please top up at platform.deepseek.com and try again"
+      : raw.includes("DEEPSEEK_API_KEY not configured")
+      ? "Please configure DEEPSEEK_API_KEY in .env.local"
       : raw.includes("rate limit") || raw.includes("overloaded")
-      ? "请求太频繁，请稍等几秒再试"
-      : "生成失败，请稍后重试";
+      ? "Too many requests, please wait a few seconds and try again"
+      : "Generation failed, please try again later";
     return jsonResp({ success: false, recipes: [], error: msg }, 500);
   }
 }

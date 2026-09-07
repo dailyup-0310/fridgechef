@@ -1,4 +1,4 @@
-export type Difficulty = "简单" | "中等" | "较难";
+export type Difficulty = "Easy" | "Medium" | "Hard";
 
 export interface Recipe {
   id: string;

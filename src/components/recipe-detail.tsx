@@ -77,7 +77,7 @@ export function RecipeDetail({ recipe, showCalories, onClose }: Props) {
                 )}
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface text-theme-muted text-sm font-medium">
                   <Clock size={13} />
-                  <span>约 {recipe.cookTimeMinutes} 分钟</span>
+                  <span>~{recipe.cookTimeMinutes} min</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface text-theme-muted text-sm font-medium">
                   <span>{recipe.difficulty}</span>
@@ -86,7 +86,7 @@ export function RecipeDetail({ recipe, showCalories, onClose }: Props) {
 
               {/* Ingredients */}
               <div>
-                <h3 className="font-bold text-theme text-sm mb-2.5">所需食材</h3>
+                <h3 className="font-bold text-theme text-sm mb-2.5">Ingredients</h3>
                 <div className="flex flex-wrap gap-2">
                   {recipe.ingredients.map((ing) => {
                     const isUserIng = recipe.usedUserIngredients.includes(ing);
@@ -107,14 +107,14 @@ export function RecipeDetail({ recipe, showCalories, onClose }: Props) {
                 </div>
                 {recipe.usedUserIngredients.length > 0 && (
                   <p className="text-[11px] text-accent-muted mt-2 opacity-60">
-                    高亮为你提供的食材
+                    Highlighted: your ingredients
                   </p>
                 )}
               </div>
 
               {/* Steps */}
               <div>
-                <h3 className="font-bold text-theme text-sm mb-3">做法步骤</h3>
+                <h3 className="font-bold text-theme text-sm mb-3">Instructions</h3>
                 <ol className="space-y-3">
                   {recipe.steps.map((step, i) => (
                     <li key={i} className="flex gap-3">

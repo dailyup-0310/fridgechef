@@ -6,16 +6,16 @@ export async function POST(request: Request) {
     const body = await request.json();
     code = String(body.code ?? "");
   } catch {
-    return Response.json({ success: false, error: "请求格式错误" }, { status: 400 });
+    return Response.json({ success: false, error: "Invalid request format" }, { status: 400 });
   }
 
   if (!code.trim()) {
-    return Response.json({ success: false, error: "请输入邀请码" }, { status: 400 });
+    return Response.json({ success: false, error: "Please enter an invite code" }, { status: 400 });
   }
 
   const valid = await checkCodeValid(code);
   if (!valid) {
-    return Response.json({ success: false, error: "邀请码无效" }, { status: 403 });
+    return Response.json({ success: false, error: "Invalid invite code" }, { status: 403 });
   }
 
   const upper = code.trim().toUpperCase();

@@ -3,13 +3,13 @@ export type Mode = "daily" | "diet";
 export interface DailyPreferences {
   mealType?: "breakfast" | "lunch" | "main";
   cookTime?: string;  // minutes as string, e.g. "30" — matches slider output
-  cuisine?: "中餐" | "西餐" | "日餐" | "韩餐";
-  flavor?: "清淡" | "微辣" | "适中" | "重口";
+  cuisine?: "Chinese" | "Western" | "Japanese" | "Korean";
+  flavor?: "Mild" | "Medium" | "Bold";
 }
 
 export interface DietPreferences {
   mealType?: "breakfast" | "lunch" | "main";
   cookTime?: string;
-  cuisine?: "中餐" | "西餐" | "日餐" | "韩餐";
+  cuisine?: "Chinese" | "Western" | "Japanese" | "Korean";
   calorieTarget?: number;
 }

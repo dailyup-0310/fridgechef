@@ -8,13 +8,13 @@ export interface ModeConfig {
 
 export const MODE_CONFIG: Record<Mode, ModeConfig> = {
   daily: {
-    label: "日常模式",
+    label: "Daily Mode",
     emoji: "🍳",
-    description: "用冰箱里的食材，做一顿好饭",
+    description: "Turn your fridge ingredients into a great meal",
   },
   diet: {
-    label: "减脂模式",
+    label: "Diet Mode",
     emoji: "🥗",
-    description: "控制热量，吃得健康",
+    description: "Control calories, eat healthy",
   },
 };

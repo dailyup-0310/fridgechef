@@ -59,10 +59,10 @@ export function IngredientInput({ ingredients, onChange }: Props) {
       <div className="flex items-center justify-between">
         <h2 className="text-base font-bold text-theme flex items-center gap-2">
           <ShoppingBasket size={17} className="text-accent" />
-          我有这些食材
+          My Ingredients
         </h2>
         {filledCount > 0 && filledCount < 3 && (
-          <span className="text-xs text-accent-muted font-medium">食材越多菜谱越丰富</span>
+          <span className="text-xs text-accent-muted font-medium">More ingredients, more recipes</span>
         )}
       </div>
 
@@ -83,7 +83,7 @@ export function IngredientInput({ ingredients, onChange }: Props) {
               <Input
                 value={item.input}
                 onChange={(e) => handleChange(item.id, e.target.value)}
-                placeholder="输入食材，如：鸡蛋、西红柿"
+                placeholder="Enter ingredient, e.g. eggs, tomatoes"
                 className="flex-1 bg-white border-theme focus-accent rounded-2xl h-11 text-sm shadow-clay-sm placeholder:text-accent-muted placeholder:opacity-50 text-theme"
                 style={{ borderColor: "var(--c-border)" }}
               />
@@ -108,13 +108,13 @@ export function IngredientInput({ ingredients, onChange }: Props) {
           style={{ borderColor: "var(--c-accent-muted)", opacity: 0.7 }}
         >
           <Plus size={15} />
-          <span>添加食材</span>
+          <span>Add Ingredient</span>
         </motion.button>
       )}
 
       <div className="space-y-2.5 pt-1">
         <p className="text-[11px] text-theme-muted font-medium">
-          系统推荐常用食材（点击选中，再次点击取消）
+          Suggested ingredients (click to select, click again to remove)
         </p>
         {INGREDIENT_TAG_GROUPS.map((group) => (
           <div key={group.label} className="flex flex-wrap items-center gap-1.5">

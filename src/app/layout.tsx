@@ -15,8 +15,8 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  title: "FridgeChef · 冰箱厨神",
-  description: "把冰箱里的食材，变成一顿好饭",
+  title: "FridgeChef · Your Smart Kitchen Assistant",
+  description: "Turn whatever's in your fridge into a great meal",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh" className={`${dmSans.variable} ${fredoka.variable} h-full antialiased`}>
+    <html lang="en" className={`${dmSans.variable} ${fredoka.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

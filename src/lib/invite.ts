@@ -50,7 +50,7 @@ export async function consumeOneUse(code: string): Promise<CodeResult> {
 
     if (error) {
       console.error("[invite] Supabase error:", error);
-      return { valid: false, error: "服务器错误，请重试" };
+      return { valid: false, error: "Server error, please try again" };
     }
 
     if (data?.error) {
@@ -64,10 +64,10 @@ export async function consumeOneUse(code: string): Promise<CodeResult> {
   const raw = process.env.INVITE_CODES ?? "";
   const entry = raw.split(",").find((e) => e.split(":")[0].trim().toUpperCase() === upper);
   const maxUses = entry ? Number(entry.split(":")[1]) : 0;
-  if (!maxUses) return { valid: false, error: "邀请码无效" };
+  if (!maxUses) return { valid: false, error: "Invalid invite code" };
 
   const used = (inMemory.get(upper) ?? 0) + 1;
-  if (used > maxUses) return { valid: false, error: "邀请码已达使用上限" };
+  if (used > maxUses) return { valid: false, error: "Invite code usage limit reached" };
   inMemory.set(upper, used);
   return { valid: true, remaining: maxUses - used };
 }

@@ -46,22 +46,22 @@ function ChipGroup({ label, options, value, onSelect }: ChipGroupProps) {
 }
 
 const MEAL_TYPE_OPTIONS = [
-  { value: "breakfast", label: "早餐" },
-  { value: "main", label: "正餐" },
+  { value: "breakfast", label: "Breakfast" },
+  { value: "main", label: "Main Meal" },
 ];
 
 
 const CUISINE_OPTIONS = [
-  { value: "中餐", label: "中餐" },
-  { value: "西餐", label: "西餐" },
-  { value: "日餐", label: "日餐" },
-  { value: "韩餐", label: "韩餐" },
+  { value: "Chinese", label: "Chinese" },
+  { value: "Western", label: "Western" },
+  { value: "Japanese", label: "Japanese" },
+  { value: "Korean", label: "Korean" },
 ];
 
 const FLAVOR_OPTIONS = [
-  { value: "清淡", label: "清淡" },
-  { value: "适中", label: "适中" },
-  { value: "重口", label: "重口" },
+  { value: "Mild", label: "Mild" },
+  { value: "Medium", label: "Medium" },
+  { value: "Bold", label: "Bold" },
 ];
 
 export function PreferencePanel({ mode, preferences, onChange }: Props) {
@@ -75,18 +75,18 @@ export function PreferencePanel({ mode, preferences, onChange }: Props) {
     <div className="space-y-4">
       <h2 className="text-base font-bold text-theme flex items-center gap-2">
         <SlidersHorizontal size={17} className="text-accent" />
-        偏好设置
-        <span className="font-normal text-accent-muted text-sm opacity-70">（可选）</span>
+        Preferences
+        <span className="font-normal text-accent-muted text-sm opacity-70">(optional)</span>
       </h2>
 
       <div className="space-y-4">
-        <ChipGroup label="餐别" options={MEAL_TYPE_OPTIONS} value={prefs.mealType} onSelect={(v) => patch("mealType", v)} />
+        <ChipGroup label="Meal Type" options={MEAL_TYPE_OPTIONS} value={prefs.mealType} onSelect={(v) => patch("mealType", v)} />
         {/* Cook time slider */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-theme-muted uppercase tracking-wide">做饭时长</span>
+            <span className="text-xs font-semibold text-theme-muted uppercase tracking-wide">Cook Time</span>
             <span className="text-xs font-bold text-theme">
-              {prefs.cookTime ? `${prefs.cookTime} 分钟` : "—"}
+              {prefs.cookTime ? `${prefs.cookTime} min` : "—"}
             </span>
           </div>
           <input
@@ -104,31 +104,31 @@ export function PreferencePanel({ mode, preferences, onChange }: Props) {
           />
           <div className="flex justify-between text-[10px] text-theme-muted select-none">
             <span>0</span>
-            <span>1 小时</span>
-            <span>2 小时</span>
-            <span>3 小时</span>
+            <span>1 hr</span>
+            <span>2 hr</span>
+            <span>3 hr</span>
           </div>
         </div>
 
         {mode === "daily" && (
           <>
-            <ChipGroup label="菜系" options={CUISINE_OPTIONS} value={prefs.cuisine} onSelect={(v) => patch("cuisine", v)} />
-            <ChipGroup label="口味" options={FLAVOR_OPTIONS} value={prefs.flavor} onSelect={(v) => patch("flavor", v)} />
+            <ChipGroup label="Cuisine" options={CUISINE_OPTIONS} value={prefs.cuisine} onSelect={(v) => patch("cuisine", v)} />
+            <ChipGroup label="Flavor" options={FLAVOR_OPTIONS} value={prefs.flavor} onSelect={(v) => patch("flavor", v)} />
           </>
         )}
 
         {mode === "diet" && (
           <>
-          <ChipGroup label="菜系" options={CUISINE_OPTIONS} value={prefs.cuisine} onSelect={(v) => patch("cuisine", v)} />
+          <ChipGroup label="Cuisine" options={CUISINE_OPTIONS} value={prefs.cuisine} onSelect={(v) => patch("cuisine", v)} />
           <div className="space-y-2">
-            <span className="text-xs font-semibold text-theme-muted uppercase tracking-wide">热量目标</span>
+            <span className="text-xs font-semibold text-theme-muted uppercase tracking-wide">Calorie Target</span>
             <div className="flex items-center gap-2">
               <input
                 type="number"
                 inputMode="numeric"
                 min={100}
                 max={2000}
-                placeholder="如：500"
+                placeholder="e.g. 500"
                 value={prefs.calorieTarget ?? ""}
                 onChange={(e) => patch("calorieTarget", e.target.value ? Number(e.target.value) : undefined)}
                 className="w-32 h-11 px-4 text-sm border rounded-2xl bg-white shadow-clay-sm text-theme placeholder:text-accent-muted placeholder:opacity-50 focus-accent focus:outline-none"

@@ -19,48 +19,48 @@ import type { GenerateRequest, GenerateResponse } from "@/types/api";
 const MOCK_RECIPES_DAILY: Recipe[] = [
   {
     id: "r1",
-    name: "番茄炒鸡蛋",
-    description: "家常经典，酸甜下饭",
-    ingredients: ["西红柿", "鸡蛋", "盐", "油", "葱"],
-    usedUserIngredients: ["西红柿", "鸡蛋"],
+    name: "Tomato and Egg Stir Fry",
+    description: "A classic home dish — savory, tangy, and delicious",
+    ingredients: ["Tomatoes", "Eggs", "Salt", "Oil", "Scallions"],
+    usedUserIngredients: ["Tomatoes", "Eggs"],
     steps: [
-      "鸡蛋打散，加少许盐搅匀备用。",
-      "西红柿切块，葱切末。",
-      "热锅冷油，炒熟鸡蛋盛出。",
-      "同锅下西红柿翻炒出汁，倒入鸡蛋，调味翻匀即可。",
+      "Beat the eggs with a pinch of salt and set aside.",
+      "Cut tomatoes into chunks; finely chop the scallions.",
+      "Heat oil in a wok, scramble the eggs until just set, then remove.",
+      "In the same wok, stir-fry the tomatoes until juicy, return the eggs, season, and toss to combine.",
     ],
     cookTimeMinutes: 15,
-    difficulty: "简单",
+    difficulty: "Easy",
     imageUrl: "",
   },
   {
     id: "r2",
-    name: "蒜蓉西兰花",
-    description: "清爽脆嫩，蒜香浓郁",
-    ingredients: ["西兰花", "大蒜", "盐", "油", "生抽"],
-    usedUserIngredients: ["西兰花"],
+    name: "Garlic Broccoli",
+    description: "Crisp and tender with a rich garlic aroma",
+    ingredients: ["Broccoli", "Garlic", "Salt", "Oil", "Soy sauce"],
+    usedUserIngredients: ["Broccoli"],
     steps: [
-      "西兰花掰成小朵，洗净焯水 1 分钟捞出。",
-      "大蒜切末，热油爆香。",
-      "下西兰花大火翻炒，加盐和生抽调味即可。",
+      "Break broccoli into florets, wash, then blanch for 1 minute and drain.",
+      "Mince the garlic and sauté in hot oil until fragrant.",
+      "Add broccoli and stir-fry over high heat; season with salt and soy sauce.",
     ],
     cookTimeMinutes: 10,
-    difficulty: "简单",
+    difficulty: "Easy",
     imageUrl: "",
   },
   {
     id: "r3",
-    name: "葱油拌面",
-    description: "葱香四溢，一拌即食",
-    ingredients: ["面条", "葱", "生抽", "老抽", "糖", "油"],
-    usedUserIngredients: ["面条", "葱"],
+    name: "Scallion Oil Noodles",
+    description: "Fragrant scallion oil — toss and eat",
+    ingredients: ["Noodles", "Scallions", "Light soy sauce", "Dark soy sauce", "Sugar", "Oil"],
+    usedUserIngredients: ["Noodles", "Scallions"],
     steps: [
-      "葱切段，热油小火慢炸至金黄捞出，留葱油。",
-      "生抽、老抽、糖调成酱汁，倒入葱油锅中略煮。",
-      "面条煮熟，淋上酱汁拌匀，摆上炸葱即可。",
+      "Cut scallions into sections; fry slowly in oil over low heat until golden, remove and reserve the scallion oil.",
+      "Combine light soy sauce, dark soy sauce, and sugar into a sauce; add to the scallion oil and simmer briefly.",
+      "Cook noodles, drain, drizzle with the sauce, toss well, and top with the fried scallions.",
     ],
     cookTimeMinutes: 20,
-    difficulty: "简单",
+    difficulty: "Easy",
     imageUrl: "",
   },
 ];
@@ -68,49 +68,49 @@ const MOCK_RECIPES_DAILY: Recipe[] = [
 const MOCK_RECIPES_DIET: Recipe[] = [
   {
     id: "d1",
-    name: "水煮鸡胸肉沙拉",
-    description: "高蛋白低脂，饱腹感强",
-    ingredients: ["鸡胸肉", "黄瓜", "胡萝卜", "生菜", "柠檬汁", "盐"],
-    usedUserIngredients: ["鸡胸肉"],
+    name: "Poached Chicken Breast Salad",
+    description: "High protein, low fat, and very filling",
+    ingredients: ["Chicken breast", "Cucumber", "Carrots", "Lettuce", "Lemon juice", "Salt"],
+    usedUserIngredients: ["Chicken breast"],
     steps: [
-      "鸡胸肉煮熟，放凉后撕成细条。",
-      "黄瓜、胡萝卜切丝，生菜撕碎。",
-      "全部混合，挤柠檬汁，撒盐拌匀即可。",
+      "Poach the chicken breast until cooked through; let cool, then shred into thin strips.",
+      "Julienne the cucumber and carrots; tear the lettuce into pieces.",
+      "Combine everything, squeeze over lemon juice, sprinkle with salt, and toss well.",
     ],
     cookTimeMinutes: 20,
-    difficulty: "简单",
+    difficulty: "Easy",
     calories: 320,
     imageUrl: "",
   },
   {
     id: "d2",
-    name: "蒸蛋豆腐",
-    description: "嫩滑低卡，补钙补蛋白",
-    ingredients: ["鸡蛋", "豆腐", "生抽", "葱花", "香油"],
-    usedUserIngredients: ["鸡蛋", "豆腐"],
+    name: "Steamed Egg Tofu",
+    description: "Silky, low-calorie, and rich in protein",
+    ingredients: ["Eggs", "Tofu", "Soy sauce", "Scallions", "Sesame oil"],
+    usedUserIngredients: ["Eggs", "Tofu"],
     steps: [
-      "豆腐切块铺底，鸡蛋打散加温水 1:1.5 比例搅匀。",
-      "蛋液过筛倒入豆腐碗，蒸 10 分钟至凝固。",
-      "淋生抽和几滴香油，撒葱花即可。",
+      "Cut tofu into pieces and lay in a bowl; beat eggs with warm water at a 1:1.5 ratio.",
+      "Strain the egg mixture over the tofu and steam for 10 minutes until just set.",
+      "Drizzle with soy sauce and a few drops of sesame oil; garnish with scallions.",
     ],
     cookTimeMinutes: 15,
-    difficulty: "简单",
+    difficulty: "Easy",
     calories: 210,
     imageUrl: "",
   },
   {
     id: "d3",
-    name: "清炒时蔬",
-    description: "多彩蔬菜，低热量高纤维",
-    ingredients: ["西兰花", "胡萝卜", "菠菜", "蒜", "盐", "油"],
-    usedUserIngredients: ["西兰花", "胡萝卜"],
+    name: "Stir-Fried Seasonal Vegetables",
+    description: "Colorful veggies — low calorie, high fiber",
+    ingredients: ["Broccoli", "Carrots", "Spinach", "Garlic", "Salt", "Oil"],
+    usedUserIngredients: ["Broccoli", "Carrots"],
     steps: [
-      "所有蔬菜洗净切好，蒜切片。",
-      "热锅少油，爆香蒜片，下蔬菜大火翻炒。",
-      "加盐调味，炒至断生即可出锅。",
+      "Wash and prep all vegetables; slice the garlic.",
+      "Heat a little oil in a wok, sauté garlic until fragrant, then add vegetables and stir-fry over high heat.",
+      "Season with salt and cook until just tender, then serve.",
     ],
     cookTimeMinutes: 10,
-    difficulty: "简单",
+    difficulty: "Easy",
     calories: 180,
     imageUrl: "",
   },
@@ -210,10 +210,10 @@ export default function HomePage() {
           setShownNames((prev) => [...prev, ...data.recipes.map((r) => r.name)]);
         }
       } else {
-        setErrorMsg(data.error ?? "生成失败，请重试");
+        setErrorMsg(data.error ?? "Generation failed, please try again");
       }
     } catch {
-      setErrorMsg("网络错误，请检查连接后重试");
+      setErrorMsg("Network error, please check your connection and try again");
     } finally {
       setLoading(false);
     }
@@ -247,7 +247,7 @@ export default function HomePage() {
       >
         {/* All strokes use CSS var so color changes with mode */}
 
-        {/* ── Large citrus cross-section — bottom center (主角) ── */}
+        {/* ── Large citrus cross-section — bottom center ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.28 }} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="195" cy="826" r="76" />
           <circle cx="195" cy="826" r="58" />
@@ -270,7 +270,7 @@ export default function HomePage() {
           <circle cx="162" cy="826" r="3" />
         </g>
 
-        {/* ── Ladle / 汤勺 — upper right ── */}
+        {/* ── Ladle — upper right ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           {/* Bowl of spoon */}
           <path d="M 318 68 Q 302 72 296 88 Q 292 104 300 116 Q 310 126 326 124 Q 342 120 348 104 Q 352 88 344 76 Q 336 66 318 68 Z" />
@@ -280,14 +280,14 @@ export default function HomePage() {
           <path d="M 372 214 Q 378 224 372 230 Q 364 232 360 224" />
         </g>
 
-        {/* ── Apple 苹果 — upper left ── */}
+        {/* ── Apple — upper left ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           <path d="M 46 90 Q 22 86 18 68 Q 16 50 28 42 Q 40 36 48 46 Q 56 36 68 42 Q 80 50 78 68 Q 74 86 50 90 Z" />
           <line x1="48" y1="44" x2="46" y2="28" />
           <path d="M 46 34 Q 56 24 64 32 Q 58 42 48 38 Z" />
         </g>
 
-        {/* ── Tomato 西红柿 — upper right area ── */}
+        {/* ── Tomato — upper right area ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="330" cy="140" r="26" />
           {/* Calyx leaves */}
@@ -299,7 +299,7 @@ export default function HomePage() {
           <path d="M 304 140 Q 318 132 330 136 Q 342 140 356 132" strokeWidth="0.9" />
         </g>
 
-        {/* ── Egg 鸡蛋 (fried) — left mid ── */}
+        {/* ── Egg (fried) — left mid ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           {/* White blob */}
           <path d="M 6 296 Q -4 310 2 328 Q 8 344 26 350 Q 46 356 60 342 Q 72 328 68 310 Q 62 294 44 288 Q 24 284 6 296 Z" />
@@ -307,7 +307,7 @@ export default function HomePage() {
           <circle cx="38" cy="320" r="13" />
         </g>
 
-        {/* ── Carrot 胡萝卜 — right side ── */}
+        {/* ── Carrot — right side ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           {/* Body */}
           <path d="M 358 258 Q 350 278 348 302 Q 347 318 354 324 Q 360 320 366 306 Q 372 284 370 262 Q 368 252 358 258 Z" />
@@ -320,7 +320,7 @@ export default function HomePage() {
           <path d="M 362 258 Q 370 240 378 236" />
         </g>
 
-        {/* ── Mushroom 蘑菇 — left lower ── */}
+        {/* ── Mushroom — left lower ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           {/* Cap */}
           <path d="M 18 488 Q 16 464 28 450 Q 42 438 58 442 Q 74 446 80 462 Q 84 478 78 490 Z" />
@@ -334,7 +334,7 @@ export default function HomePage() {
           <circle cx="70" cy="462" r="3.5" />
         </g>
 
-        {/* ── Strawberry 草莓 — right lower ── */}
+        {/* ── Strawberry — right lower ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           {/* Body */}
           <path d="M 330 570 Q 316 576 312 596 Q 310 616 322 630 Q 336 642 350 636 Q 364 628 366 608 Q 368 588 354 572 Q 346 564 330 570 Z" />
@@ -350,7 +350,7 @@ export default function HomePage() {
           <circle cx="350" cy="622" r="2" />
         </g>
 
-        {/* ── Cherry 樱桃 — top center ── */}
+        {/* ── Cherry — top center ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="176" cy="54" r="12" />
           <circle cx="202" cy="58" r="12" />
@@ -358,7 +358,7 @@ export default function HomePage() {
           <path d="M 188 32 Q 194 22 202 46" />
         </g>
 
-        {/* ── Broccoli 西兰花 — lower left ── */}
+        {/* ── Broccoli — lower left ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.26 }} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
           {/* Florets */}
           <path d="M 46 650 Q 32 644 28 630 Q 26 616 38 610 Q 50 606 56 618" />
@@ -370,7 +370,7 @@ export default function HomePage() {
           <path d="M 52 700 Q 64 708 78 702" />
         </g>
 
-        {/* ── Fish 鱼 — center lower ── */}
+        {/* ── Fish — center lower ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.24 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           {/* Body */}
           <path d="M 148 718 Q 160 702 186 700 Q 214 700 228 718 Q 214 736 188 738 Q 162 736 148 718 Z" />
@@ -386,7 +386,7 @@ export default function HomePage() {
           <path d="M 196 714 Q 202 708 210 714" />
         </g>
 
-        {/* ── Garlic 大蒜 — right mid ── */}
+        {/* ── Garlic — right mid ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.24 }} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M 356 430 Q 338 422 334 406 Q 330 388 342 380 Q 356 374 368 382 Q 382 392 378 410 Q 374 426 358 432 Z" />
           <path d="M 346 430 Q 342 412 346 386" strokeWidth="0.9" />
@@ -395,7 +395,7 @@ export default function HomePage() {
           <path d="M 354 358 Q 362 350 366 358" />
         </g>
 
-        {/* ── Fried egg 煎鸡蛋 — lower left ── */}
+        {/* ── Fried egg — lower left ── */}
         <g style={{ stroke: "var(--c-accent-muted)", fill: "none", opacity: 0.28 }} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
           {/* Egg white — wavy blob */}
           <path d="M 40 118 Q 54 112 66 122 Q 76 130 74 146 Q 82 156 74 168 Q 66 180 54 182 Q 46 192 34 188 Q 20 186 12 174 Q 2 162 8 148 Q 6 134 16 126 Q 26 116 40 118 Z" />
@@ -436,7 +436,7 @@ export default function HomePage() {
             animate={{ opacity: 1 }}
             className="text-[10px] tracking-[0.24em] uppercase font-medium text-accent-muted mb-3"
           >
-            {isDiet ? "减脂饮食助手" : "AI 菜谱生成器"}
+            {isDiet ? "Diet Assistant" : "AI Recipe Generator"}
           </motion.p>
 
           <motion.h1
@@ -456,7 +456,7 @@ export default function HomePage() {
             transition={{ delay: 0.18 }}
             className="mt-3 text-sm font-medium text-theme-muted max-w-[220px] leading-relaxed"
           >
-            {isDiet ? "低卡饮食，从今天开始" : "把冰箱里的食材，变成一顿好饭"}
+            {isDiet ? "Low-calorie eating, start today" : "Turn your fridge ingredients into a great meal"}
           </motion.p>
         </div>
 
@@ -490,7 +490,7 @@ export default function HomePage() {
               <div className="h-px" style={{ borderTopWidth: 1, borderTopColor: "var(--c-border)" }} />
               <div className="flex items-center justify-between">
                 <h2 className="text-base font-bold text-theme flex items-center gap-1.5">
-                  为你推荐
+                  Recommended for You
                 </h2>
                 {(recipes.length > 0 || noMoreRecipes) && !loading && (
                   <div className="flex items-center gap-3">
@@ -499,7 +499,7 @@ export default function HomePage() {
                       whileTap={{ scale: 0.92 }}
                       className="text-xs font-medium text-accent-muted hover:text-theme transition-colors cursor-pointer"
                     >
-                      重新开始
+                      Start Over
                     </motion.button>
                     {recipes.length > 0 && (
                       <motion.button
@@ -507,7 +507,7 @@ export default function HomePage() {
                         whileTap={{ scale: 0.92 }}
                         className="text-xs font-semibold text-accent hover:text-accent-dark transition-colors cursor-pointer"
                       >
-                        再来一次
+                        More Recipes
                       </motion.button>
                     )}
                   </div>
@@ -523,15 +523,15 @@ export default function HomePage() {
                   className="py-10 flex flex-col items-center gap-3 text-center"
                 >
                   <span className="text-3xl">🎉</span>
-                  <p className="font-bold text-theme text-base">已经是所有菜谱啦</p>
-                  <p className="text-sm text-theme-muted">当前食材能做的菜都推荐过了，换个食材试试？</p>
+                  <p className="font-bold text-theme text-base">That&apos;s all the recipes!</p>
+                  <p className="text-sm text-theme-muted">All possible recipes for your ingredients have been shown. Try different ingredients?</p>
                   <motion.button
                     onClick={handleReset}
                     whileTap={{ scale: 0.95 }}
                     className="mt-2 px-5 py-2 rounded-full text-sm font-semibold text-white shadow-clay-sm cursor-pointer"
                     style={{ backgroundColor: "var(--c-accent)" }}
                   >
-                    重新开始
+                    Start Over
                   </motion.button>
                 </motion.div>
               ) : suggestedIngredients.length > 0 ? (
@@ -542,8 +542,8 @@ export default function HomePage() {
                 >
                   <span className="text-3xl">🥗</span>
                   <div>
-                    <p className="font-bold text-theme text-base mb-1">食材还不够哦</p>
-                    <p className="text-sm text-theme-muted">当前食材暂时搭配不出菜谱，建议添加：</p>
+                    <p className="font-bold text-theme text-base mb-1">Not enough ingredients</p>
+                    <p className="text-sm text-theme-muted">Your current ingredients can&apos;t make a recipe yet. Try adding:</p>
                   </div>
                   <div className="flex flex-wrap justify-center gap-2">
                     {suggestedIngredients.map((ing) => (
@@ -593,7 +593,7 @@ export default function HomePage() {
                 onClick={() => setErrorMsg(null)}
                 className="text-accent-muted hover:text-theme transition-colors text-xs shrink-0 mt-0.5 cursor-pointer"
               >
-                关闭
+                Close
               </button>
             </div>
           </motion.div>

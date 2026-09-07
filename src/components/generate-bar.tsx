@@ -35,12 +35,12 @@ export function GenerateBar({ loading, disabled, hasResults, onClick }: Props) {
                 transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
                 className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full"
               />
-              <span>主厨正在备菜中…</span>
+              <span>Chef is cooking...</span>
             </>
           ) : (
             <>
               <Sparkles size={18} />
-              <span>{hasResults ? "换一批菜谱" : "帮我做饭"}</span>
+              <span>{hasResults ? "Get New Recipes" : "Cook for Me"}</span>
             </>
           )}
         </motion.button>

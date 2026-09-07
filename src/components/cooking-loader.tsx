@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const MESSAGES = [
-  "正在备菜...",
-  "研究食材搭配...",
-  "厨师灵感涌现中...",
-  "火候掌握中...",
-  "食谱即将出炉...",
+  "Prepping ingredients...",
+  "Exploring ingredient combos...",
+  "Chef inspiration striking...",
+  "Mastering the heat...",
+  "Recipe almost ready...",
 ];
 
 export function CookingLoader() {
